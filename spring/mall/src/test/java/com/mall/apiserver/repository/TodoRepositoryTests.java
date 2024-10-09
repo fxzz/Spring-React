@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -83,5 +87,47 @@ public class TodoRepositoryTests {
         Assertions.assertEquals(updateTodo.getDueDate(), LocalDate.of(2024, 11, 30));
 
         log.info(updateTodo.toString());
+    }
+
+    @Test
+    public void testDelete() {
+        Todo todoTest = Todo.builder()
+                .title("Title")
+                .content("Content")
+                .dueDate(LocalDate.of(2024, 12, 30))
+                .build();
+
+        todoRepository.save(todoTest);
+
+        Long tno = todoTest.getTno();
+
+        todoRepository.deleteById(tno);
+
+        Optional<Todo> result = todoRepository.findById(tno);
+
+        Assertions.assertTrue(result.isEmpty());
+
+    }
+
+    @Test
+    public void testPaging() {
+
+        for (int i = 0; i < 100; i++) {
+            Todo todoTest = Todo.builder()
+                    .title("Title" + i)
+                    .content("Content" + i)
+                    .dueDate(LocalDate.of(2024, 12, 30))
+                    .build();
+
+            todoRepository.save(todoTest);
+        }
+
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+
+        Page<Todo> result = todoRepository.findAll(pageable);
+
+        log.info(result.getTotalElements());
+        log.info(result.getContent());
     }
 }
