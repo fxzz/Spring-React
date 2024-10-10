@@ -1,6 +1,7 @@
 package com.mall.apiserver.service;
 
 import com.mall.apiserver.domain.Todo;
+import com.mall.apiserver.dto.PageRequestDTO;
 import com.mall.apiserver.dto.TodoDTO;
 import com.mall.apiserver.repository.TodoRepository;
 import lombok.extern.log4j.Log4j2;
@@ -46,6 +47,13 @@ public class TodoServiceTests {
                 .build();
 
         log.info(todoService.register(todoDTO));
+    }
+
+    @Test
+    public void testGetList() {
+         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+
+         log.info(todoService.getList(pageRequestDTO));
     }
 
 }

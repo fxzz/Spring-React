@@ -131,19 +131,4 @@ public class TodoRepositoryTests {
         log.info(result.getContent());
     }
 
-    @Test
-    public void testSearch1() {
-
-        for (int i = 0; i < 30; i++) {
-            Todo todoTest = Todo.builder()
-                    .title("Title" + i)
-                    .content("Content" + i)
-                    .dueDate(LocalDate.of(2024, 12, 30))
-                    .build();
-
-            todoRepository.save(todoTest);
-        }
-
-        todoRepository.search1();
-    }
 }

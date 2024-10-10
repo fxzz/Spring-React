@@ -1,6 +1,8 @@
 package com.mall.apiserver.service;
 
 import com.mall.apiserver.domain.Todo;
+import com.mall.apiserver.dto.PageRequestDTO;
+import com.mall.apiserver.dto.PageResponseDTO;
 import com.mall.apiserver.dto.TodoDTO;
 
 public interface TodoService {
@@ -12,6 +14,8 @@ public interface TodoService {
     void modify(TodoDTO dto);
 
     void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
 
     default TodoDTO entityToDTO(Todo todo) {
         return TodoDTO.builder()
