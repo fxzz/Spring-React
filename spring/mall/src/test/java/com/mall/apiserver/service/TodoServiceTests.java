@@ -27,7 +27,7 @@ public class TodoServiceTests {
         for (int i = 0; i < 30; i++) {
             Todo todoTest = Todo.builder()
                     .title("Title" + i)
-                    .content("Content" + i)
+                    .writer("Content" + i)
                     .dueDate(LocalDate.of(2024, 12, 30))
                     .build();
 

@@ -32,7 +32,7 @@ public class TodoRepositoryTests {
     public void testInsert() {
         Todo todo = Todo.builder()
                 .title("Title")
-                .content("Content")
+                .writer("Content")
                 .dueDate(LocalDate.of(2024,12,30))
                 .build();
 
@@ -46,7 +46,7 @@ public class TodoRepositoryTests {
     public void testRead() {
         Todo todoTest = Todo.builder()
                 .title("Title")
-                .content("Content")
+                .writer("Content")
                 .dueDate(LocalDate.of(2024, 12, 30))
                 .build();
 
@@ -66,7 +66,7 @@ public class TodoRepositoryTests {
     public void testUpdate() {
         Todo todoTest = Todo.builder()
                 .title("Title")
-                .content("Content")
+                .writer("Content")
                 .dueDate(LocalDate.of(2024, 12, 30))
                 .build();
 
@@ -83,7 +83,7 @@ public class TodoRepositoryTests {
 
         Todo updateTodo = todoRepository.save(todo);
         Assertions.assertEquals(updateTodo.getTitle(), "Title1");
-        Assertions.assertEquals(updateTodo.getContent(), "Content1");
+        Assertions.assertEquals(updateTodo.getWriter(), "Content1");
         Assertions.assertEquals(updateTodo.getDueDate(), LocalDate.of(2024, 11, 30));
 
         log.info(updateTodo.toString());
@@ -93,7 +93,7 @@ public class TodoRepositoryTests {
     public void testDelete() {
         Todo todoTest = Todo.builder()
                 .title("Title")
-                .content("Content")
+                .writer("Content")
                 .dueDate(LocalDate.of(2024, 12, 30))
                 .build();
 
@@ -115,7 +115,7 @@ public class TodoRepositoryTests {
         for (int i = 0; i < 30; i++) {
             Todo todoTest = Todo.builder()
                     .title("Title" + i)
-                    .content("Content" + i)
+                    .writer("Content" + i)
                     .dueDate(LocalDate.of(2024, 12, 30))
                     .build();
 

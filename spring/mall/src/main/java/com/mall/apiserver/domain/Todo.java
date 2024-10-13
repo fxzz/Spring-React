@@ -20,7 +20,7 @@ public class Todo {
 
     private String title;
 
-    private String content;
+    private String writer;
 
     private boolean complete;
 
@@ -31,8 +31,8 @@ public class Todo {
         this.title = title;
     }
 
-    public void changeContent(String content) {
-        this.content = content;
+    public void changeWriter(String writer) {
+        this.writer = writer;
     }
 
     public void changeComplete(boolean complete) {
