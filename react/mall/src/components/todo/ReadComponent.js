@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getOne } from "../../api/todoApi";
+import useCustomMove from "../../hooks/useCustomMove";
 
 const initState = {
   tno: 0,
@@ -22,6 +23,7 @@ const makeDiv = (title, value) => (
 
 function ReadComponent({ tno }) {
   const [todo, setTodo] = useState(initState);
+  const { moveToList } = useCustomMove();
 
   useEffect(() => {
     getOne(tno).then((data) => {
