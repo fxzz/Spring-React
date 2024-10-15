@@ -23,7 +23,7 @@ const makeDiv = (title, value) => (
 
 function ReadComponent({ tno }) {
   const [todo, setTodo] = useState(initState);
-  const { moveToList } = useCustomMove();
+  const { moveToList, moveToModify } = useCustomMove();
 
   useEffect(() => {
     getOne(tno).then((data) => {
@@ -37,6 +37,23 @@ function ReadComponent({ tno }) {
       {makeDiv("Writer", todo.writer)}
       {makeDiv("Title", todo.title)}
       {makeDiv("Title", todo.complete ? "Completed" : "Not Yet")}
+
+      <div className="flex justify-end p-4">
+        <button
+          type="button"
+          onClick={() => moveToList()}
+          className="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500"
+        >
+          List
+        </button>
+        <button
+          type="button"
+          onClick={() => moveToModify(todo.tno)}
+          className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
+        >
+          Modify
+        </button>
+      </div>
     </div>
   );
 }
