@@ -14,3 +14,8 @@ export const getList = async (pageParam) => {
   const res = await axios.get(`${prefix}/list`, { params: { page, size } });
   return res.data;
 };
+
+export const postAdd = async (todoOjb) => {
+  const res = await axios.post(`${prefix}/`, todoOjb);
+  return res.data;
+};
