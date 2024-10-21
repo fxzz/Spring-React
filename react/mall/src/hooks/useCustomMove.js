@@ -9,18 +9,17 @@ const getNum = (param, defaultValue) => {
   if (!param) {
     return defaultValue;
   }
+
   return parseInt(param);
 };
 
 const useCustomMove = () => {
-  const navigate = useNavigate();
-
   const [refresh, setRefresh] = useState(false);
 
+  const navigate = useNavigate();
   const [queryParams] = useSearchParams();
-  const page = getNum(queryParams.get("page"), 1);
-  const size = getNum(queryParams.get("size"), 10);
-
+  const page = queryParams.get("page") ? parseInt(queryParams.get("page")) : 1;
+  const size = queryParams.get("size") ? parseInt(queryParams.get("size")) : 10;
   const queryDefault = createSearchParams({ page, size }).toString();
 
   const moveToList = (pageParam) => {
@@ -39,7 +38,7 @@ const useCustomMove = () => {
     }
 
     setRefresh(!refresh);
-    navigate({ pathname: "../list", search: queryDefault });
+    navigate({ pathname: "../list", search: queryStr });
   };
 
   const moveToModify = (num) => {
