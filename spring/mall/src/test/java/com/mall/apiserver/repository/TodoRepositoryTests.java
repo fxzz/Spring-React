@@ -78,7 +78,7 @@ public class TodoRepositoryTests {
 
         Todo todo = result.orElseThrow();
         todo.changeTitle("Title1");
-        todo.changeContent("Content1");
+        todo.changeWriter("Content1");
         todo.changeDueDate(LocalDate.of(2024, 11, 30));
 
         Todo updateTodo = todoRepository.save(todo);
